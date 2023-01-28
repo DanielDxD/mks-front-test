@@ -1,0 +1,11 @@
+name: Playwright Tests
+
+on:
+  deployment_status:
+    
+  run-unit-tests:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    run: npx run test
+    env:
+    BASE_URL: ${{ github.event.deployment_status.target_url }}
