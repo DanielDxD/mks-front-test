@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, removeProduct, toggleCart, useCart } from "../../redux/sliceCart";
 import { IProduct } from "../../services/api";
 
-type Props = {
-    isOpen?: boolean
-}
-
 export default function Cart(): JSX.Element {
 
     const cart = useSelector(useCart);

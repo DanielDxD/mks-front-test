@@ -5,14 +5,11 @@ import { IProduct, getProducts } from "../../services/api";
 import ProductCard from "../ProductCard";
 import { AppContainer } from "./styles";
 import Cart from "../Cart";
-import { useSelector } from "react-redux";
-import { useCart } from "../../redux/sliceCart";
 import Footer from "../Footer";
 
 export default function App(): JSX.Element {
 
     const [products, setProducts] = useState<IProduct[]>([]);
-    const cart = useSelector(useCart);
 
     useEffect(() => {
         getProducts()
