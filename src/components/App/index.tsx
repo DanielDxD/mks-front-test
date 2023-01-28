@@ -6,14 +6,21 @@ import ProductCard from "../ProductCard";
 import { AppContainer } from "./styles";
 import Cart from "../Cart";
 import Footer from "../Footer";
+import swal from "sweetalert";
+import Loading from "../Loading";
 
 export default function App(): JSX.Element {
 
     const [products, setProducts] = useState<IProduct[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getProducts()
-            .then(res => setProducts(res.products));
+            .then(res => setProducts(res.products))
+            .catch(async () => {
+                await swal("Atenção!", "Ocorreu um erro. Não foi possível obter os produtos.", "warning");
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     return (
@@ -22,7 +29,11 @@ export default function App(): JSX.Element {
             <AppContainer>
                 <Container>
                     <Row>
-                        {products.map(item => (
+                        {loading ? Array(4).fill("").map((_, i) => (
+                            <Col md={3} key={i}>
+                                <Loading />
+                            </Col>
+                        )) : products.map(item => (
                             <Col md={3} key={item.id}>
                                 <ProductCard product={item} />
                             </Col>

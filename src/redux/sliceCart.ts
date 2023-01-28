@@ -15,6 +15,7 @@ const sliceCart = createSlice({
     name: "cart",
     initialState: INITIAL_STATE,
     reducers: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         toggleCart(state, { payload }: PayloadAction<undefined>) {
             return { ...state, isOpen: !state.isOpen };
         },
