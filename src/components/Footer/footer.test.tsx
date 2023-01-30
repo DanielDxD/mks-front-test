@@ -6,6 +6,6 @@ describe("<Footer />", () => {
     it("Should render the copyright text on footer", () => {
         render(<Footer />);
 
-        expect(screen.getByText(/MKS Sistemas © Todos os direitos reservados/i));
+        expect(screen.getByText(/MKS Sistemas © Todos os direitos reservados/i)).toBeInTheDocument();
     });
 });
